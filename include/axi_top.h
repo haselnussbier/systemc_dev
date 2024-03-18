@@ -1,0 +1,27 @@
+#ifndef __AXI_TOP__
+#define __AXI_TOP__
+
+#include<systemc.h>
+#include "master.h"
+#include "slave.h"
+#include "axi_channel.h"
+
+class axi_top : sc_module {
+    public:
+        axi_channel axi_channel0;
+        master *master0;
+        slave *slave0;
+        sc_clock clk;
+
+        SC_CTOR(axi_top){
+            master0 = new master("master");
+            master0->clk(clk);
+            master0->out(axi_channel0);
+        
+            slave0 = new slave("slave");
+            slave0->clk(clk);
+            slave0->in(axi_channel0);
+        }
+};
+
+#endif
