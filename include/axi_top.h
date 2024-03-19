@@ -10,13 +10,15 @@ SC_MODULE(axi_top){
     
     master *master0;
     slave *slave0;
+    axi_channel axi_channel0;
 
     sc_clock clk;
-    axi_channel axi_channel0;
+    
     sc_signal<bool> TVALID;
     sc_signal<bool> TREADY;
 
     SC_CTOR(axi_top){
+        cout << "top constructor" << endl;
         master0 = new master("master");
         master0->clk(clk);
         master0->out(axi_channel0);

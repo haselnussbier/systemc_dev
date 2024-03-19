@@ -7,6 +7,7 @@
 
 class axi_channel : public sc_channel, public master_if, public slave_if {
     public:
+        SC_HAS_PROCESS(axi_channel);
         void write(sc_bv<8> TDATA);
         sc_bv<8> read();
         void reset();

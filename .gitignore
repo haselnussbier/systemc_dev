@@ -3,3 +3,5 @@ build
 misc
 CMakeLists.txt
 readme.MD
+lab
+fifo

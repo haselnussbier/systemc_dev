@@ -1,6 +1,7 @@
 #include "../include/master.h"
 
 void master::master_thread(){
+    cout << "master thread" << endl;
     while(1){
         wait();
         TDATA = "10101010";

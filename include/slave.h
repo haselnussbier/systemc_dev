@@ -20,6 +20,7 @@ SC_MODULE(slave){
     void slave_thread();
 
     SC_CTOR(slave){
+        cout << "slave constructor" << endl;
         SC_THREAD(slave_thread);
         sensitive << clk;
     };

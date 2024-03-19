@@ -18,6 +18,7 @@ SC_MODULE(master){
     void master_thread();
 
     SC_CTOR(master){
+        cout << "master constructor" << endl;
         SC_THREAD(master_thread);
         sensitive << clk;
     };
