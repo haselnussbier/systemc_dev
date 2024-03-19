@@ -10,8 +10,7 @@ SC_MODULE(axi_top){
     
     master *master0;
     slave *slave0;
-    axi_channel axi_channel0;
-
+    
     sc_clock clk;
     
     sc_signal<bool> TVALID;
@@ -19,6 +18,8 @@ SC_MODULE(axi_top){
 
     SC_CTOR(axi_top){
         cout << "top constructor" << endl;
+        axi_channel axi_channel0("axi_channel0");
+
         master0 = new master("master");
         master0->clk(clk);
         master0->out(axi_channel0);

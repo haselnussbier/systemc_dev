@@ -2,6 +2,7 @@
 
 void slave::slave_thread(){
     cout << "slave thread" << endl;
+    wait();
     while(1){
         wait();
         if (TVALID.read() == true){
