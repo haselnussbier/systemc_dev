@@ -12,13 +12,7 @@ SC_MODULE(axi_top){
     sc_in_clk ACLK;
     sc_in<bool> ARESETn;
     sc_in<bool> TRIGGER;
-    sc_in_clk ACLK;
-    sc_in<bool> ARESETn;
-    sc_in<bool> TRIGGER;
 
-    fsm_master master;
-    fsm_slave slave;
-    axi_channel channel;
     fsm_master master;
     fsm_slave slave;
     axi_channel channel;
