@@ -2,35 +2,28 @@
 #define __AXI_TOP__
 
 #include<systemc.h>
-#include "master.h"
-#include "slave.h"
 #include "axi_channel.h"
+#include "fsm_master.h"
+#include "fsm_slave.h"
 
 SC_MODULE(axi_top){
-    
-    master *master0;
-    slave *slave0;
-    
-    sc_clock clk;
-    
-    sc_signal<bool> TVALID;
-    sc_signal<bool> TREADY;
+    sc_in_clk ACLK;
+    sc_in<bool> ARESETn;
+    sc_in<bool> TRIGGER;
 
-    SC_CTOR(axi_top){
-        cout << "top constructor" << endl;
-        axi_channel axi_channel0("axi_channel0");
+    fsm_master master;
+    fsm_slave slave;
+    axi_channel channel;
 
-        master0 = new master("master");
-        master0->clk(clk);
-        master0->out(axi_channel0);
-        master0->TVALID(TVALID);
-        master0->TREADY(TREADY);
-    
-        slave0 = new slave("slave");
-        slave0->clk(clk);
-        slave0->in(axi_channel0);
-        slave0->TVALID(TVALID);
-        slave0->TREADY(TREADY);
+    SC_CTOR(axi_top) : master("master"), slave("slave"), channel("channel") {
+        master.ACLK(ACLK);
+        master.ARESETn(ARESETn);
+        master.channel(channel);
+        master.TRIGGER(TRIGGER);
+
+        slave.ACLK(ACLK);
+        slave.ARESETn(ARESETn);
+        slave.channel(channel);
     }
 };
 
