@@ -14,7 +14,7 @@ SC_MODULE(axi){
     SC_CTOR(axi){
         cout << "axi" << endl;
         SC_THREAD(stim);
-        sensitive << ACLK;
+        sensitive << ACLK.pos();
         dont_initialize();
     }
 };

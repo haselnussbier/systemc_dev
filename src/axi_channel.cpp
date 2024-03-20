@@ -13,7 +13,7 @@ void axi_channel::m_write_last(bool last){
 }
 
 bool axi_channel::m_read_ready(){
-    return TREADY.read();
+    return TREADY;
 }
 
 bool axi_channel::m_read_trigger(){

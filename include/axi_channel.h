@@ -26,13 +26,12 @@ class axi_channel : public sc_channel, public master_if, public slave_if, public
         void write_reset(bool reset);
         void write_trigger(bool trigger);
         
-    private:
-        sc_signal<sc_bv<8>> TDATA;
-        sc_signal<bool> TVALID;
-        sc_signal<bool> TLAST;
-        sc_signal<bool> TREADY;
-        sc_signal<bool> TRIGGER;
-        sc_signal<bool> ARESETn;
+        sc_bv<8> TDATA;
+        bool TVALID;
+        bool TLAST;
+        bool TREADY;
+        bool TRIGGER;
+        bool ARESETn;
 };
 
 #endif

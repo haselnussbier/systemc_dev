@@ -15,7 +15,7 @@ void fsm_master::get_next_state(){
             switch (current_state)
             {
             case m_reset:
-                channel->m_write_data(0); // reset data
+                channel->m_write_data(0);
                 COUNTER = 0;
                 channel->m_write_valid(0);
                 channel->m_write_last(0);
@@ -35,7 +35,7 @@ void fsm_master::get_next_state(){
                 break;
 
             case waitForReady:
-                channel->m_write_data(generate_data()); // implement data production
+                channel->m_write_data(COUNTER);
                 channel->m_write_valid(1);
 
                 if(COUNTER < (LENGTH-1)){
@@ -72,16 +72,4 @@ void fsm_master::get_next_state(){
             }
         }
     }
-}
-
-sc_bv<8> fsm_master::generate_data(){
-    std::string d = "";
-    for (int i=0; i<1; i++){
-        for (int j=0; j<8; j++){
-            std::string bit = std::to_string(rand() % 2);
-            d = d + bit;
-        }
-    }
-    sc_bv<8> data;
-    return "11111111";
 }

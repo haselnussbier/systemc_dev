@@ -12,6 +12,7 @@ void fsm_slave::get_next_state(){
             {
             case s_reset:
                 //reset output
+                channel->s_write_ready(0);
                 COUNTER = 0;
                 current_state = ready;
                 break;
@@ -31,6 +32,7 @@ void fsm_slave::get_next_state(){
                     else {
                         COUNTER = COUNTER + 1;
                     }
+                    current_state = ready;
                 }
                 else {
                     current_state = waitForValid;
