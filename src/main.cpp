@@ -1,9 +1,11 @@
 #include<systemc.h>
-#include "../include/axi_tb_top.h"
+#include "../include/axi_top.h"
 
 int sc_main(int argc, char* argv[]) {
-	sc_start(10, SC_SEC);
-	axi_tb_top axi_tb_top("axi_tb_top");
+	
+	axi_top axi_top("axi_top");
+
+	sc_start(50, SC_SEC);
 	cout << "Finished." << endl;
 	return 0;
 }

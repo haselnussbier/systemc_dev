@@ -4,7 +4,7 @@ void fsm_slave::get_next_state(){
     current_state = s_reset;
     while(1){
         wait();
-        if (ARESETn == true){
+        if (channel->s_read_reset() == true){
             current_state = s_reset;
         }
         else {
@@ -24,8 +24,8 @@ void fsm_slave::get_next_state(){
             case waitForValid:
                 if(channel->s_read_valid()==1){
                     channel->s_write_ready(0);
-                    // add tdata to output
-                    if((COUNTER == (LENGTH-1)) || (channel->s_read_last()==true)){
+                    out[COUNTER] = channel->s_read_data();
+                    if((COUNTER == (OUTLENGTH-1)) || (channel->s_read_last()==true)){
                         COUNTER = 0;
                     }
                     else {

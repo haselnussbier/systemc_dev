@@ -16,11 +16,8 @@ bool axi_channel::m_read_ready(){
     return TREADY.read();
 }
 
-void axi_channel::m_reset(){
-    TDATA = "00000000";
-    TVALID = 0;
-    TLAST = 0;
-    TREADY = 0;
+bool axi_channel::m_read_trigger(){
+    return TRIGGER;
 }
 
 sc_bv<8> axi_channel::s_read_data(){
@@ -37,4 +34,20 @@ bool axi_channel::s_read_last(){
 
 void axi_channel::s_write_ready(bool ready){
     TREADY = ready;
+}
+
+void axi_channel::write_reset(bool reset){
+    ARESETn = reset;
+}
+
+void axi_channel::write_trigger(bool trigger){
+    TRIGGER = trigger;
+}
+
+bool axi_channel::m_read_reset(){
+    return ARESETn;
+}
+
+bool axi_channel::s_read_reset(){
+    return ARESETn;
 }

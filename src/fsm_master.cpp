@@ -1,11 +1,12 @@
 #include "../include/fsm_master.h"
+#include<string>
 
 void fsm_master::get_next_state(){
     current_state = m_reset;
     while(true){
         wait();
 
-        if (ARESETn == true)
+        if (channel->m_read_reset() == true)
         {
             current_state = m_reset;
         }
@@ -14,28 +15,27 @@ void fsm_master::get_next_state(){
             switch (current_state)
             {
             case m_reset:
-                channel->m_write_data("00000000");
+                channel->m_write_data(0); // reset data
                 COUNTER = 0;
                 channel->m_write_valid(0);
                 channel->m_write_last(0);
-                channel->m_reset();
                 current_state = waitForTriggerHigh;
                 break;
             
             case waitForTriggerHigh:
-                if (TRIGGER==true){
+                if (channel->m_read_trigger()==true){
                     current_state = waitForTriggerLow;
                 }
                 break;
 
             case waitForTriggerLow:
-                if (TRIGGER==false){
+                if (channel->m_read_trigger()==false){
                     current_state = waitForReady;
                 }
                 break;
 
             case waitForReady:
-                channel->m_write_data("11111111");
+                channel->m_write_data(generate_data()); // implement data production
                 channel->m_write_valid(1);
 
                 if(COUNTER < (LENGTH-1)){
@@ -72,4 +72,16 @@ void fsm_master::get_next_state(){
             }
         }
     }
+}
+
+sc_bv<8> fsm_master::generate_data(){
+    std::string d = "";
+    for (int i=0; i<1; i++){
+        for (int j=0; j<8; j++){
+            std::string bit = std::to_string(rand() % 2);
+            d = d + bit;
+        }
+    }
+    sc_bv<8> data;
+    return "11111111";
 }

@@ -8,16 +8,15 @@ enum master_fsm_state {m_reset, waitForTriggerHigh, waitForTriggerLow, waitForRe
 
 SC_MODULE(fsm_master){
     sc_in_clk ACLK;
-    sc_in<bool> ARESETn;
-    sc_in<bool> TRIGGER;
     sc_port<master_if> channel;
 
     sc_signal<master_fsm_state> current_state;
-    sc_signal<int> COUNTER;
-    sc_signal<int> LENGTH;
+    int COUNTER;
+    int LENGTH = 5;
 
 
     void get_next_state();
+    sc_bv<8> generate_data();
 
     SC_CTOR(fsm_master){
         cout << "fsm_master constructor" << endl;

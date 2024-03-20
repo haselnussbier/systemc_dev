@@ -8,19 +8,21 @@ enum slave_fsm_state{ s_reset, ready, waitForValid};
 
 SC_MODULE(fsm_slave){
     sc_in_clk ACLK;
-    sc_in<bool> ARESETn;
     sc_port<slave_if> channel;
 
     sc_signal<slave_fsm_state> current_state;
     //data out
-    sc_signal<int> LENGTH;
-    sc_signal<int> COUNTER;
+    int OUTLENGTH = 5;
+    int COUNTER; 
+
+    sc_bv<8> out [5];
 
 
 
     void get_next_state();
 
     SC_CTOR(fsm_slave){
+        cout << "fsm_slave constructor" << endl;
         SC_THREAD(get_next_state);
         sensitive << ACLK.pos();
         dont_initialize();
