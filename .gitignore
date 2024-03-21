@@ -1,7 +1,0 @@
-.vscode
-misc
-CMakeLists.txt
-lab
-fifo
-build/CMakeFiles
-.gitignore
