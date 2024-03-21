@@ -15,7 +15,7 @@ SC_MODULE(fsm_slave){
     int OUTLENGTH = 5;
     int COUNTER; 
 
-    sc_bv<8> out [5];
+    sc_bv<8> OUT [5];
 
 
 

@@ -25,7 +25,7 @@ void fsm_slave::get_next_state(){
             case waitForValid:
                 if(channel->s_read_valid()==1){
                     channel->s_write_ready(0);
-                    out[COUNTER] = channel->s_read_data();
+                    OUT[COUNTER] = channel->s_read_data();
                     if((COUNTER == (OUTLENGTH-1)) || (channel->s_read_last()==true)){
                         COUNTER = 0;
                     }
