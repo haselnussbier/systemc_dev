@@ -2,6 +2,14 @@
 
 This repository was created within the scope of the HMS self study task and is supposed to simulate an AXI-Stream-Interface with SystemC.
 
+The task contained:
+- Understand the AXI-Stream protocol
+- Set up SystemC environment
+- Implement interfaces to ensure the modules can be easily expanded
+- Implement the interface logic
+- Add data transfer functionality
+- Implement packet transmission
+
 ## Components
 
 ### Signals
@@ -56,5 +64,8 @@ If ARESETn is 1 the slave goes into its s_reset state.
 ### AXI
 
 The AXI module is essentially the controller of the channel. Therefore its interface only consists of two write-functions for the two signals the controller must posess: write_reset to reset the whole process and write_trigger to initiate the process of data-transmission.
+
+## Further Work
+
 
 
