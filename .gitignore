@@ -1,7 +1,6 @@
 .vscode
 misc
 CMakeLists.txt
-readme.MD
 lab
 fifo
 build/CMakeFiles

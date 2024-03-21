@@ -6,7 +6,7 @@
 
 enum master_fsm_state {m_reset, waitForTriggerHigh, waitForTriggerLow, waitForReady, waitForSlave};
 
-SC_MODULE(fsm_master){
+SC_MODULE(fsm_master) {
     sc_in_clk ACLK;
     sc_port<master_if> channel;
 
@@ -16,7 +16,6 @@ SC_MODULE(fsm_master){
 
 
     void get_next_state();
-    sc_bv<8> generate_data();
 
     SC_CTOR(fsm_master){
         cout << "fsm_master constructor" << endl;

@@ -9,7 +9,6 @@ SC_MODULE(axi){
     sc_port<axi_if> channel;
 
     void stim();
-    void wait_cycle(int w);
 
     SC_CTOR(axi){
         cout << "axi" << endl;
